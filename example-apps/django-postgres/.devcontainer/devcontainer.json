@@ -1,0 +1,26 @@
+{
+    "name": "Django Development",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/code",
+    "shutdownAction": "stopCompose",
+
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "python.linting.pylintEnabled": true,
+                "python.formatting.autopep8Enabled": true,
+                "editor.formatOnSave": true
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-vscode.vscode-docker",
+                "batisteo.vscode-django"
+            ]
+        }
+    },
+
+    "remoteUser": "root",
+    "postCreateCommand": "echo 'source /opt/venv/bin/activate' >> ~/.bashrc"
+}
