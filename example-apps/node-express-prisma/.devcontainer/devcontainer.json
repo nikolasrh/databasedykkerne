@@ -1,0 +1,17 @@
+{
+  "name": "Node.js",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  
+  "forwardPorts": [3000],
+  "postStartCommand": "npm install && npx prisma generate && npm run dev & sleep 10",
+  "remoteUser": "node",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Prisma.prisma",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
