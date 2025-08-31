@@ -34,17 +34,21 @@ Vi fokuserer på den første fordi det er raskere, og man trenger kun én VM hvi
 For å lage en Colima-instans:
 
 ```sh
-colima start --vm-type=vz --vz-rosetta
+colima start --vm-type=vz --vz-rosetta --cpu 4 --memory 8
 ```
 
 ## Starte databaser og appikasjoner
 
 Starte ønsket database:
+
 ```sh
 docker compose up postgres
 docker compose up mssql
 docker compose up oracle
 ```
+
+Legg på `-mcp` for å også starte MCP-server.
+
 
 For å utvikle mot en applikasjon med Dev Containers må root av applikasjonen åpnes i et nytt VS Code-vindu.
 
