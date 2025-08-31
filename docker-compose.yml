@@ -1,0 +1,83 @@
+x-healthcheck: &healthcheck
+  interval: 10s
+  timeout: 5s
+  retries: 10
+  start_period: 5s
+  start_interval: 5s
+
+x-toolbox: &toolbox
+  image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.13.0
+  ports:
+    - 5001:5000
+  healthcheck:
+    <<: *healthcheck
+    test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+
+services:
+  postgres:
+    profiles: ["postgres"]
+    image: postgres:17.6-trixie
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+  
+  postgres-toolbox:
+    profiles: ["postgres"]
+    <<: [*toolbox]
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    command: ["toolbox", "--address", "0.0.0.0", "--ui", "--prebuilt", "postgres"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  oracle:
+    profiles: ["oracle"]
+    image: gvenzl/oracle-free:23.9-slim-faststart
+    ports:
+      - 1521:1521
+    # TODO: Init script?
+    # volumes:
+    #   - ./docker-compose/oracle-db:/container-entrypoint-initdb.d
+    environment:
+      ORACLE_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "healthcheck.sh"]
+
+  mssql:
+    profiles: ["mssql"]
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    platform: linux/amd64
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: Password123!
+      ACCEPT_EULA: Y
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Password123!", "-Q", "SELECT 1", "-C"]
+
+  mssql-toolbox:
+    profiles: ["mssql"]
+    <<: [*toolbox]
+    environment:
+      MSSQL_HOST: mssql
+      MSSQL_PORT: 1433
+      MSSQL_DATABASE: msdb 
+      MSSQL_USER: sa
+      MSSQL_PASSWORD: Password123!
+    command: ["toolbox", "--address", "0.0.0.0", "--ui", "--prebuilt", "mssql"]
+    depends_on:
+      mssql:
+        condition: service_healthy
