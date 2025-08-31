@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"postgres-toolbox": {
+			"url": "http://localhost:5001/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}
