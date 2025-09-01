@@ -80,8 +80,6 @@ services:
       - 1521:1521
     environment:
       ORACLE_PASSWORD: password
-      APP_USER: app_user
-      APP_USER_PASSWORD: password
     healthcheck:
       <<: *healthcheck
       test: [ "CMD", "healthcheck.sh" ]
@@ -103,8 +101,5 @@ services:
 
 networks:
   postgres:
-    internal: true
   mssql:
-    internal: true
   oracle:
-    internal: true

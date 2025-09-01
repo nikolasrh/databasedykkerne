@@ -12,8 +12,10 @@
                 "ms-dotnettools.csdevkit"
             ],
             "settings": {
-                "editor.formatOnSave": true
+                "editor.formatOnSave": true,
+                "files.autoSave": "onFocusChange"
             }
         }
-    }
+    },
+    "postCreateCommand": "dotnet tool install --global dotnet-ef"
 }
