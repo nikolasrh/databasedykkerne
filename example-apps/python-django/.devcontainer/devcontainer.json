@@ -1,5 +1,5 @@
 {
-    "name": "Python 3",
+    "name": "Django",
     "image": "mcr.microsoft.com/devcontainers/python:3.12",
     "forwardPorts": [
         8000

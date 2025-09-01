@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_app",
 ]
 
 MIDDLEWARE = [
@@ -73,12 +74,32 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
+    # Default database - SQLite (test database will be created automatically)
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+    },
 
+    # PostgreSQL - connects to Docker container
+    "postgres": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        "HOST": "host.docker.internal",
+        "PORT": "5432",
+    },
+
+    # Oracle - connects to Docker container
+    "oracle": {
+        "ENGINE": "django.db.backends.oracle",
+        "NAME": "FREEPDB1",
+        "USER": "system",
+        "PASSWORD": "password",
+        "HOST": "host.docker.internal",
+        "PORT": "1521",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
