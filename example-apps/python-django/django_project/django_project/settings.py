@@ -83,8 +83,8 @@ DATABASES = {
     # PostgreSQL - connects to Docker container
     "postgres": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
+        "NAME": "django_db",
+        "USER": "django_user",
         "PASSWORD": "password",
         "HOST": "host.docker.internal",
         "PORT": "5432",

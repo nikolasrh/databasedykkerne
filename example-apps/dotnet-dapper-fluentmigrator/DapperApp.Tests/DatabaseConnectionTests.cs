@@ -32,7 +32,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000)]
     public async Task TestPostgreSqlConnection()
     {
-        var connectionString = "Host=host.docker.internal;Port=5432;Database=postgres;Username=postgres;Password=password;";
+        var connectionString = "Host=host.docker.internal;Port=5432;Database=dapper_fluentmigrator_db;Username=dapper_user;Password=password;";
 
         using var connection = new NpgsqlConnection(connectionString);
 

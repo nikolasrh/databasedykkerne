@@ -21,7 +21,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000)]
     public async Task TestPostgreSqlConnection()
     {
-        var connectionString = "Host=host.docker.internal;Port=5432;Database=postgres;Username=postgres;Password=password;";
+        var connectionString = "Host=host.docker.internal;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;";
         var options = new DbContextOptionsBuilder<PersonContext>()
             .UseNpgsql(connectionString)
             .Options;

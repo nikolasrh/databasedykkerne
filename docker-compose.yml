@@ -20,6 +20,8 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+    volumes:
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       <<: *healthcheck
       test: [ "CMD", "pg_isready", "-U", "postgres" ]
@@ -89,7 +91,7 @@ services:
   oracle-sqlcl:
     image: container-registry.oracle.com/database/sqlcl:25.2.2
     volumes:
-      - ./docker/oracle-sqlcl:/opt/oracle/sql_scripts:ro
+      - ./docker/oracle-sqlcl/connect.sql:/opt/oracle/sql_scripts/connect.sql:ro
     depends_on:
       oracle:
         condition: service_healthy
