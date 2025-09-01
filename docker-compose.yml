@@ -82,6 +82,8 @@ services:
       - 1521:1521
     environment:
       ORACLE_PASSWORD: password
+    volumes:
+      - ./docker/oracle/init.sql:/container-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       <<: *healthcheck
       test: [ "CMD", "healthcheck.sh" ]

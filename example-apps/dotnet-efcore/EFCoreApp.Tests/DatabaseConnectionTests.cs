@@ -4,7 +4,7 @@ namespace EFCoreApp.Tests;
 
 public class DatabaseConnectionTests
 {
-    [Fact(Timeout = 1000)]
+    [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestSqlServerConnection()
     {
         var connectionString = "Server=host.docker.internal,1433;Database=msdb;User Id=sa;Password=Password123!;TrustServerCertificate=true;";
@@ -18,7 +18,7 @@ public class DatabaseConnectionTests
         Assert.True(canConnect, "Should be able to connect to SQL Server database");
     }
 
-    [Fact(Timeout = 1000)]
+    [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestPostgreSqlConnection()
     {
         var connectionString = "Host=host.docker.internal;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;";
@@ -32,10 +32,10 @@ public class DatabaseConnectionTests
         Assert.True(canConnect, "Should be able to connect to PostgreSQL database");
     }
 
-    [Fact(Timeout = 1000)]
+    [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestOracleConnection()
     {
-        var connectionString = "Data Source=host.docker.internal:1521/FREEPDB1;User Id=system;Password=password;";
+        var connectionString = "Data Source=host.docker.internal:1521/FREEPDB1;User Id=efcore_user;Password=password;";
         var options = new DbContextOptionsBuilder<PersonContext>()
             .UseOracle(connectionString)
             .Options;

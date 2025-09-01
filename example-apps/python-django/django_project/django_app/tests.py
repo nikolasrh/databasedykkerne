@@ -1,9 +1,11 @@
 
+import unittest
 from django.test import TestCase
 
 # Create your tests here.
 
 
+@unittest.skip("Database disabled")
 class SQLiteConnectionTest(TestCase):
     """
     Test SQLite database connection with Django.
@@ -26,6 +28,7 @@ class SQLiteConnectionTest(TestCase):
             self.fail(f"SQLite query failed: {e}")
 
 
+@unittest.skip("Database disabled")
 class PostgreSQLConnectionTest(TestCase):
     """
     Test PostgreSQL database connection without Django.
@@ -56,6 +59,7 @@ class PostgreSQLConnectionTest(TestCase):
             self.fail(f"PostgreSQL query failed: {e}")
 
 
+@unittest.skip("Database disabled")
 class OracleConnectionTest(TestCase):
     """
     Test Oracle database connection without Django.
@@ -69,7 +73,7 @@ class OracleConnectionTest(TestCase):
             dsn = oracledb.makedsn(
                 "host.docker.internal", 1521, service_name="FREEPDB1")
             connection = oracledb.connect(
-                user="system", password="password", dsn=dsn)
+                user="django_user", password="password", dsn=dsn)
             cursor = connection.cursor()
             cursor.execute("SELECT 1 FROM dual")
             result = cursor.fetchone()

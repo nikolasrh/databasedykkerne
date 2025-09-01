@@ -9,13 +9,14 @@ Tanken er at applikasjoner kan gjenbrukes på kryss av prosjekter.
 
 ## Oppgaver
 
+- Velg en database, og slå på testen for å koble til
 - Lag en test som lagrer en ny instans av en modell i en database i SQLite
-- Finn ut hvordan databasemigreringer lages, og kjør den mot Postgres eller Oracle
+- Finn ut hvordan databasemigreringer lages
 - Dupliser testen, men kjør mot databasen du valgte over
 - Legg til et nytt felt på modellen din
 - Legg til en relasjon til en annen modell, og sett opp en fremmednøkkel
 
-For hver oppgave, oppdater tester, lag nye migreringer, og se hvordan det ser ut i databasen.
+For hver oppgave, oppdater tester, lag nye migreringer, eller se hvordan det ser ut i databasen.
 
 ## Kommandoer
 

@@ -5,11 +5,15 @@ Denne solution-en består av `DapperApp` og tilhørende testprosjekt `DapperApp.
 
 ## Oppgaver
 
-- Opprett en tabell med FluentMigrator
-- Kjør migreringen via `dotnet fm`
+- Velg en database, og slå på testen for å koble til
+- Sett opp FluentMigrator og lag en tabell med `fluentmigrator_user`
+- Ta en titt i `init.sql` – hva er fordelen med en dedikert bruker for FluentMigrator?
+- Reset databasen og kjør migreringen via `dotnet fm`
 - Skriv eksempel-data via MCP-serveren
-- Lag en test som kjører migreringene
+- Lag en test som resetter databasen og kjører migreringene
 - Lag en test som skriver og leser data med Dapper
+
+For hver oppgave, oppdater tester, lag nye migreringer, eller se hvordan det ser ut i databasen.
 
 ## Kommandoer
 

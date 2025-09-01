@@ -5,7 +5,8 @@ Denne solution-en består av `EFCoreApp` og tilhørende testprosjekt `EFCoreApp.
 
 ## Oppgaver
 
-- Finn ut hvordan databasemigreringer lages og kjøres
+- Velg en database, og slå på testen for å koble til
+- Finn ut hvordan databasemigreringer lages og kjøres, både programatisk og med `dotnet ef`
 - Legg til en test som lagrer en ny `PersonEntity` i en in-memory database
 - Legg til en tilsvarende test som som bruker en database kjørende med Docker
 - Legg til `YearOfBirth` på `PersonEntity`
@@ -13,7 +14,7 @@ Denne solution-en består av `EFCoreApp` og tilhørende testprosjekt `EFCoreApp.
 - Legg til en relasjon til noe annet, og sett opp en fremmednøkkel
 - Legg til en list på `PersonEntity` og lagre verdien som JSON i databasen
 
-For oppgave,  oppdater tester, lag nye migreringer, og se hvordan det ser ut i databasen.
+For hver oppgave, oppdater tester, lag nye migreringer, eller se hvordan det ser ut i databasen.
 
 ## Kommandoer
 

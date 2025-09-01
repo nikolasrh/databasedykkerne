@@ -94,7 +94,7 @@ DATABASES = {
     "oracle": {
         "ENGINE": "django.db.backends.oracle",
         "NAME": "FREEPDB1",
-        "USER": "system",
+        "USER": "django_user",
         "PASSWORD": "password",
         "HOST": "host.docker.internal",
         "PORT": "1521",
