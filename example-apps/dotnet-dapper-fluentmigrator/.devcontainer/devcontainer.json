@@ -1,13 +1,10 @@
 {
-    "name": "Python 3",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12",
-    "forwardPorts": [
-        8000
-    ],
+    "name": "Dapper/FluentMigrator",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python"
+                "ms-dotnettools.csdevkit"
             ],
             "settings": {
                 "editor.formatOnSave": true,
@@ -15,5 +12,5 @@
             }
         }
     },
-    "postCreateCommand": "pip install -r requirements.txt"
+    "postCreateCommand": "dotnet tool install --global FluentMigrator.DotNet.Cli"
 }

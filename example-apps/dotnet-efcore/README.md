@@ -1,7 +1,7 @@
 # Entity Framework Core (EF Core)
 
 Denne solution-en består av `EFCoreApp` og tilhørende testprosjekt `EFCoreApp.Tests`.
-`EFCoreApp`. `EFCoreApp` er bare en konsoll-applikasjon, men inneholder `PersonEntity` og `PersonContext` som kan utvides for å lære mer om EF Core.
+`EFCoreApp` er bare en konsoll-applikasjon, men inneholder `PersonEntity` og `PersonContext` som kan utvides for å lære mer om EF Core.
 
 ## Oppgaver
 
@@ -66,7 +66,7 @@ dotnet add EFCoreApp package Oracle.EntityFrameworkCore
 dotnet add EFCoreApp.Tests reference EFCoreApp
 ```
 
-Installere kommandolinjeverktøy for å lage databasemigreringer:
+Installere kommandolinjeverktøy for databasemigrering:
 
 ```
 dotnet tool install --global dotnet-ef

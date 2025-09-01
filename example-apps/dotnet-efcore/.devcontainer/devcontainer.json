@@ -1,11 +1,6 @@
 {
-    "name": "C# (.NET)",
+    "name": "EFCore",
     "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
-    "features": {},
-    "forwardPorts": [
-        5000,
-        5001
-    ],
     "customizations": {
         "vscode": {
             "extensions": [
