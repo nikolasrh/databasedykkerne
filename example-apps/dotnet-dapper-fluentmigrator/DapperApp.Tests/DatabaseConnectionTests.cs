@@ -13,7 +13,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestSqlServerConnection()
     {
-        var connectionString = "Server=host.docker.internal,1433;Database=msdb;User Id=sa;Password=Password123!;TrustServerCertificate=true;";
+        var connectionString = "Server=host.docker.internal,1433;Database=dapper_fluentmigrator_db;User Id=dapper_user;Password=Password123!;TrustServerCertificate=true;";
 
         using var connection = new SqlConnection(connectionString);
 
@@ -32,7 +32,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestPostgreSqlConnection()
     {
-        var connectionString = "Host=host.docker.internal;Port=5432;Database=dapper_fluentmigrator_db;Username=dapper_user;Password=password;";
+        var connectionString = "Host=host.docker.internal;Port=5432;Database=dapper_fluentmigrator_db;Username=dapper_user;Password=Password123!;";
 
         using var connection = new NpgsqlConnection(connectionString);
 
@@ -51,7 +51,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestOracleConnection()
     {
-        var connectionString = "Data Source=host.docker.internal:1521/FREEPDB1;User Id=dapper_user;Password=password;";
+        var connectionString = "Data Source=host.docker.internal:1521/FREEPDB1;User Id=dapper_user;Password=Password123!;";
 
         using var connection = new OracleConnection(connectionString);
 

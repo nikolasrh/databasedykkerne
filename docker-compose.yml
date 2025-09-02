@@ -53,9 +53,12 @@ services:
     environment:
       MSSQL_SA_PASSWORD: Password123!
       ACCEPT_EULA: Y
+    volumes:
+      - ./docker/mssql/init.sql:/init.sql:ro
+      - ./docker/mssql/healthcheck-init.sh:/healthcheck-init.sh:ro
     healthcheck:
       <<: *healthcheck
-      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Password123!", "-Q", "SELECT 1", "-C" ]
+      test: [ "CMD", "/healthcheck-init.sh" ]
     networks:
       - mssql
 
