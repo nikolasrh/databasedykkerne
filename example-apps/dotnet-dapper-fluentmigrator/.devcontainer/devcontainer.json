@@ -1,6 +1,7 @@
 {
-    "name": "Dapper/FluentMigrator",
+    "name": "dotnet-dapper-fluentmigrator",
     "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
+    "runArgs": ["--name", "dotnet-dapper-fluentmigrator"],
     "customizations": {
         "vscode": {
             "extensions": [
