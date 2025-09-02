@@ -1,6 +1,7 @@
 {
-  "name": "Node.js",
+  "name": "node-express-prisma",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "runArgs": ["--name", "node-express-prisma"],
   
   "forwardPorts": [3000],
   "postStartCommand": "npm install && npx prisma generate && npm run dev & sleep 10",
