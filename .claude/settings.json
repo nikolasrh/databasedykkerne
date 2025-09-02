@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "postgres-toolbox": {
+      "url": "http://localhost:5001/mcp",
+      "type": "http"
+    },
+    "mssql-toolbox": {
+      "url": "http://localhost:5002/mcp",
+      "type": "http"
+    },
+    "oracle-sqlcl": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "compose",
+        "exec",
+        "oracle-sqlcl",
+        "sql",
+        "-mcp"
+      ]
+    }
+  }
+}
