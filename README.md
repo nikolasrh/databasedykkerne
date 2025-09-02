@@ -15,7 +15,13 @@ To vanlige løsninger for dette er Docker Desktop og Colima.
 
 ### Docker Desktop
 
-TODO: Legg til beskrivelse
+Installer Docker Desktop:
+[https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+Skru så på Rosetta i innstillingene i Docker Desktop. Det er nødvendig for emulering av AMD64-arkitektur:
+
+<img width="1727" height="993" alt="Pasted Graphic 1" src="https://github.com/user-attachments/assets/07db2446-5035-43f9-a282-a07301e84e58" />
+
 
 ### Colima
 
