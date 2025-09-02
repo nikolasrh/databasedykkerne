@@ -11,9 +11,8 @@
 - There are no overlap between example apps when it comes to databases/schemas/users
 - Only work at one example app at a time
 - Keep each app simple and to the point
-- Most apps are meant to run inside Dev Containers (except for Kotlin apps)
-    - Run tests in Dev Containers with docker exec, and use the container name set in devcontainer.json
-    - Run tests with gradle for Kotlin apps
+- Apps are meant to be developed in VS Code with Dev Containers, and devcontainer.json includes extensions needed for linting, debugging etc.
+- Run tests in Dev Containers with docker exec, and use the container name set in devcontainer.json
 - Each app should:
     - Be a console app or light weight web app
     - Define needed VS Code extensions 
