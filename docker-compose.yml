@@ -7,9 +7,6 @@ x-healthcheck: &healthcheck
 
 x-toolbox: &toolbox
   image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.13.0
-  healthcheck:
-    <<: *healthcheck
-    test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
 
 services:
   postgres:
