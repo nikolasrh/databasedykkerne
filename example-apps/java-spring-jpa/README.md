@@ -21,7 +21,7 @@ Kjør applikasjon:
 Kjør tester
 
 ```bash
-./gradlew test --info
+./gradlew test --rerun
 ```
 
 ## Kommandoer brukt for å lage applikasjonen
