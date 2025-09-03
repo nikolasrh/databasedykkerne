@@ -1,10 +1,13 @@
 # Kotlin
 
+Tooling for Kotlin i VS Code er ikke best.
+Bruk IntelliJ hvis du har det og ønsker det lille ekstra.
+
 Her står man fritt til å teste det man måtte ønske.
 
 Forslag:
-- Reactive streaming fra databasen med RD2BC
-- Bruk Exposed som ORM (object-relational mapping) og for å lage og kjøre migreringer
+- Reactive streaming fra databasen med RD2BC og Postgres
+- Bruk Exposed som ORM (object-relational mapping), og for å lage migreringer
 
 ## Kommandoer
 
