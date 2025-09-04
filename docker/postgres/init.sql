@@ -1,6 +1,8 @@
 CREATE DATABASE efcore_db;
 CREATE USER efcore_user WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE efcore_db TO efcore_user;
+\connect efcore_db;
+GRANT USAGE, CREATE ON SCHEMA public TO efcore_user;
 
 CREATE DATABASE dapper_fluentmigrator_db;
 CREATE USER dapper_user WITH PASSWORD 'password';
