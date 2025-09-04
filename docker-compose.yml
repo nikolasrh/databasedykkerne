@@ -103,7 +103,19 @@ services:
     entrypoint: >
       sh -c "cd /opt/oracle/sql_scripts && sql /nolog @connect.sql && tail -f /dev/null"
 
+  clickhouse:
+    image: clickhouse/clickhouse-server:23.10
+    ports:
+      - 8123:8123
+      - 9000:9000
+    healthcheck:
+      <<: *healthcheck
+      test: [ "CMD", "curl", "-f", "http://localhost:8123/ping" ]
+    networks:
+      - clickhouse
+
 networks:
   postgres:
   mssql:
   oracle:
+  clickhouse:
