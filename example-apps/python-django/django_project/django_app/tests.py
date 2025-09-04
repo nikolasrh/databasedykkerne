@@ -28,7 +28,6 @@ class SQLiteConnectionTest(TestCase):
             self.fail(f"SQLite query failed: {e}")
 
 
-@unittest.skip("Database disabled")
 class PostgreSQLConnectionTest(TestCase):
     """
     Test PostgreSQL database connection without Django.
@@ -40,7 +39,7 @@ class PostgreSQLConnectionTest(TestCase):
             import psycopg2
 
             connection = psycopg2.connect(
-                host='host.docker.internal',
+                host='localhost',
                 port='5432',
                 database='postgres',
                 user='postgres',

@@ -75,18 +75,19 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 
 DATABASES = {
     # Default database - SQLite (test database will be created automatically)
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    },
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # },
 
     # PostgreSQL - connects to Docker container
-    "postgres": {
+    # "postgres": {
+    "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_db",
-        "USER": "django_user",
+        "NAME": "postgres",
+        "USER": "postgres",
         "PASSWORD": "password",
-        "HOST": "host.docker.internal",
+        "HOST": "localhost",
         "PORT": "5432",
     },
 
