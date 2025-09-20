@@ -1,0 +1,17 @@
+[project]
+name = "performance-test"
+version = "0.1.0"
+description = "Database performance testing playground"
+dependencies = [
+    "psycopg[binary]==3.2.10",
+    "psycopg_pool==3.2.6",
+    "pytest==8.4.2",
+    "pytest-benchmark==5.1.0",
+    "pytest-timeout==2.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["src"]
+python_files = "test_*.py"
+timeout = 10
+addopts = "-s"

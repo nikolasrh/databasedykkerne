@@ -1,3 +1,5 @@
+Only read files that don't match the .gitignore file.
+
 # Structure
 - ./docker-compose.yml: Contains databases and MCP server
 - ./docker: Init scripts for each Docker Compose service
