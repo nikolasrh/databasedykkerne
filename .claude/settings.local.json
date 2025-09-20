@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker exec:*)",
+      "Bash(docker-compose:*)",
+      "Bash(./migrate.sh up)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
