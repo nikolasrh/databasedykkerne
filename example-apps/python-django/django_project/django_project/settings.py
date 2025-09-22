@@ -97,7 +97,7 @@ DATABASES = {
         "NAME": "FREEPDB1",
         "USER": "django_user",
         "PASSWORD": "password",
-        "HOST": "host.docker.internal",
+        "HOST": "localhost",
         "PORT": "1521",
     },
 }

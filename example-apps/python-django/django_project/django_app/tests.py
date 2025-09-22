@@ -70,7 +70,7 @@ class OracleConnectionTest(TestCase):
             import oracledb
 
             dsn = oracledb.makedsn(
-                "host.docker.internal", 1521, service_name="FREEPDB1")
+                "localhost", 1521, service_name="FREEPDB1")
             connection = oracledb.connect(
                 user="django_user", password="password", dsn=dsn)
             cursor = connection.cursor()

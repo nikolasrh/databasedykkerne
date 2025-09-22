@@ -1,7 +1,12 @@
 {
     "name": "kotlin",
     "image": "mcr.microsoft.com/devcontainers/java:21",
-    "runArgs": ["--name", "kotlin"],
+    "runArgs": [
+        "--name",
+        "kotlin",
+        "--network",
+        "host"
+    ],
     "features": {
         "ghcr.io/devcontainers/features/java:1": {
             "version": "none",

@@ -1,7 +1,12 @@
 {
     "name": "dotnet-efcore",
     "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
-    "runArgs": ["--name", "dotnet-efcore"],
+    "runArgs": [
+        "--name",
+        "dotnet-efcore",
+        "--network",
+        "host"
+    ],
     "customizations": {
         "vscode": {
             "extensions": [

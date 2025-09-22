@@ -1,7 +1,12 @@
 {
     "name": "python-django",
     "image": "mcr.microsoft.com/devcontainers/python:3.12",
-    "runArgs": ["--name", "python-django"],
+    "runArgs": [
+        "--name",
+        "python-django",
+        "--network",
+        "host"
+    ],
     "forwardPorts": [
         8000
     ],
