@@ -20,7 +20,7 @@ OFFSET %s
 
 
 def find_products_with_avg_reviews_by_date(db_pool: ConnectionPool, offset: int = 0) -> list:
-    """Find products with their average ratings, ordered by release date descending."""
+    """Find products ordered by release date descending."""
 
     with db_pool.connection() as conn:
         with conn.cursor() as cur:
