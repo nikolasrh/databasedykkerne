@@ -3,6 +3,14 @@
  */
 package com.example
 
+import java.sql.DriverManager
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.transactions.transaction
+
+// import org.flywaydb.core.Flyway
+
 class App {
     val greeting: String
         get() {
@@ -10,6 +18,98 @@ class App {
         }
 }
 
+fun testConnection() {
+    val url = "jdbc:postgresql://host.docker.internal:5432/postgres"
+    val user = "postgres"
+    val password = "password"
+
+    try {
+        DriverManager.getConnection(url, user, password).use { conn ->
+            println("Successfully connected to PostgreSQL!")
+        }
+    } catch (e: Exception) {
+        println("Connection failed: ${e.message}")
+    }
+}
+
+fun connectToPostgres() {
+    val url = "jdbc:postgresql://localhost:5432/postgres"
+    val user = "postgres"
+    val password = "password"
+
+    try {
+        DriverManager.getConnection(url, user, password).use { conn ->
+            println("Connected to PostgreSQL successfully!")
+            val stmt = conn.createStatement()
+            val rs = stmt.executeQuery("SELECT id, name FROM test_table")
+            println("Entries in test_table:")
+            while (rs.next()) {
+                val id = rs.getInt("id")
+                val name = rs.getString("name")
+                println("$id: $name")
+            }
+        }
+    } catch (e: Exception) {
+        println("Failed to connect to PostgreSQL: \u001b[31m${e.message}\u001b[0m")
+    }
+}
+
+// fun runFlywayMigrations() {
+//             Flyway flyway = Flyway.configure().dataSource("jdbc:h2:file:./target/foobar", "sa",
+// null).load();
+
+//     val flyway =
+//             Flyway.configure()
+//                     .dataSource(
+//                             "jdbc:postgresql://host.docker.internal:5432/postgres",
+//                             "postgres",
+//                             "password"
+//                     )
+//                     .driver("org.postgresql.Driver")
+//                     .load()
+//     val result = flyway.migrate()
+//     println("Flyway migration complete: ${result.migrationsExecuted} migrations applied.")
+// }
+
+fun insertPokemon(name: String) {
+    val url = "jdbc:postgresql://host.docker.internal:5432/postgres"
+    val user = "postgres"
+    val password = "password"
+    val db =
+            Database.connect(
+                    url,
+                    driver = "org.postgresql.Driver",
+                    user = user,
+                    password = password
+            )
+    transaction(db) {
+        Pokemon.insert { it[Pokemon.name] = name }
+        println("Inserted Pokemon: $name")
+    }
+}
+
+fun getAllPokemon(): List<Pair<Int, String>> {
+    val url = "jdbc:postgresql://host.docker.internal:5432/postgres"
+    val user = "postgres"
+    val password = "password"
+    val db =
+            Database.connect(
+                    url,
+                    driver = "org.postgresql.Driver",
+                    user = user,
+                    password = password
+            )
+    return transaction(db) { Pokemon.selectAll().map { it[Pokemon.id] to it[Pokemon.name] } }
+}
+
 fun main() {
     println(App().greeting)
+    testConnection()
+    // runPokemonMigrations()
+    insertPokemon("Pikachu")
+    insertPokemon("Charmander")
+    insertPokemon("Bulbasaur")
+    val pokemon = getAllPokemon()
+    println("Pokemon in database: $pokemon")
+    // runFlywayMigrations()
 }
