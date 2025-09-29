@@ -18,7 +18,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ${POSTGRES_INIT_SQL_FILE:-./docker/postgres/init.sql}:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       <<: *healthcheck
       test: [ "CMD", "pg_isready", "-U", "postgres" ]

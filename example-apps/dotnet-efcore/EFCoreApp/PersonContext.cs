@@ -14,7 +14,7 @@ public class PersonContext : DbContext
     public DbSet<PersonEntity> TestEntities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseNpgsql($"Host=host.docker.internal;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;");
+        => options.UseNpgsql($"Host=localhost;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

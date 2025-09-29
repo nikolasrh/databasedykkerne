@@ -7,7 +7,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestSqlServerConnection()
     {
-        var connectionString = "Server=host.docker.internal,1433;Database=efcore_db;User Id=efcore_user;Password=Password123!;TrustServerCertificate=true;";
+        var connectionString = "Server=localhost,1433;Database=efcore_db;User Id=efcore_user;Password=Password123!;TrustServerCertificate=true;";
         var options = new DbContextOptionsBuilder<PersonContext>()
             .UseSqlServer(connectionString)
             .Options;
@@ -21,7 +21,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestPostgreSqlConnection()
     {
-        var connectionString = "Host=host.docker.internal;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;";
+        var connectionString = "Host=localhost;Port=5432;Database=efcore_db;Username=efcore_user;Password=password;";
         var options = new DbContextOptionsBuilder<PersonContext>()
             .UseNpgsql(connectionString)
             .Options;
@@ -35,7 +35,7 @@ public class DatabaseConnectionTests
     [Fact(Timeout = 1000, Skip = "Database disabled")]
     public async Task TestOracleConnection()
     {
-        var connectionString = "Data Source=host.docker.internal:1521/FREEPDB1;User Id=efcore_user;Password=Password123!;";
+        var connectionString = "Data Source=localhost:1521/FREEPDB1;User Id=efcore_user;Password=Password123!;";
         var options = new DbContextOptionsBuilder<PersonContext>()
             .UseOracle(connectionString)
             .Options;
