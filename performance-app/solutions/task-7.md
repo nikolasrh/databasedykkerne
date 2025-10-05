@@ -114,3 +114,7 @@ Nå brukes begge index-ene effektivt:
 1. `sellers_location_id_idx` finner raskt de 233 selgerne i Trondheim
 2. For hver selger brukes `seller_reviews_seller_id_idx` til å finne deres reviews
 3. Ingen scanning av alle 2.5M reviews lenger!
+
+### Bonus
+
+Kjør Task 5 på nytt og sammenlign execution plan etter at `random_page_cost` ble endret.
