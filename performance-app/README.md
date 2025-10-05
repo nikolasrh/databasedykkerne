@@ -4,12 +4,7 @@ Python-applikasjon for å optimalisere database-spørringer.
 
 ## Kom i gang
 
-Start PostgreSQL fra root i repoet:
-```bash
-docker compose up postgres -d
-```
-
-Åpne applikasjonen i nytt VS Code-vindu:
+Åpne mappen `performance-app` i eget VS Code-vindu:
 ```
 code performance-app
 ```
@@ -17,29 +12,20 @@ code performance-app
 Installer Dev Containers extensionen, og trykk dialogen for å åpne med Dev Containers.
 Alternativt Cmd+Shift+P og søk etter "Reopen in Container".
 
-Kjør migrasjoner:
+Kjør setup script:
 ```bash
-./migrate.sh up
+./setup.sh
 ```
 
-Seed databasen:
-```bash
-python src/seed_database.py
-```
+Scriptet starter PostgreSQL, kjører migreringer og seeder databasen.
+Ta en titt i [001_create_product_scehma.up.sql](migrations/001_create_product_schema.up.sql) for å se hvordan tabellene ser ut.
 
-Start PostgreSQL med begrensede ressurser fra root i repoet:
-```bash
-docker compose stop postgres
-docker compose -f docker-compose.yml -f docker-compose.resources.yml up postgres -d
-```
+Åpne `test_task_1.py` og les oppgaven i toppen av filen.
 
-Kjør tester:
+Kjør første test:
 ```bash
-pytest
+pytest src/test_task_1.py
 ```
-
-Til å begynne med kjører testene ganske treigt.
-Lag index-er og tilpass spørringene for å få bedre resultater.
 
 ## Golang migrate
 
@@ -49,9 +35,23 @@ Når man legger til nye migreringer må de slutte på `.up.sql`.
 Det er valgfritt å lage en "down" migrering som slutter på `.down.sql`.
 Tallet først i filnavnet bestemmer rekkefølgen.
 
-Rulle én tilbake:
-```sh
-./migrate.sh down 1
+Legg til nye SQL-filer med index-er i `./performance-app/migrations`.
+
+### Nyttige kommandoer
+
+Kjør alle databasemigreringer:
+```bash
+./migrate.sh up
 ```
 
-Legg til nye SQL-filer med index-er i `./performance-app/migrations`.
+Gå til en spesifikk versjon:
+```bash
+./migrate.sh goto 2
+```
+
+Hvis man endrer på migreringer som allerede er kjørt, kan database-versjonen bli "dirty".
+Da kan man tvinge den til den versjonen man mener er riktig med `force`:
+
+```bash
+./migrate.sh force 1
+```
