@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 from psycopg_pool import ConnectionPool
 from pytest_benchmark.fixture import BenchmarkFixture
 
-QUERY = "SELECT * FROM products WHERE category = %s AND released_date >= %s AND released_date <= %s"
+QUERY = "SELECT * FROM products WHERE category = %s AND released_date BETWEEN %s AND %s"
 
 
 def find_products_by_category_and_released_date(db_pool: ConnectionPool, category: str, start_date: datetime, end_date: datetime) -> list:
