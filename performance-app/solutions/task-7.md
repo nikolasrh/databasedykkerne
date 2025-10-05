@@ -57,3 +57,60 @@ Planning:
 - Rounds: 10
 - Time: 5.93s
 - Mean query time: 569.64 ms
+
+## Endre random_page_cost fra 4 til 1.1
+
+Innstillingen `random_page_cost` forteller optimizeren hvor dyrt random IO er. En verdi på 4 er mest brukt for HDD, mens 1.1 er bedre for SSD.
+
+Etter denne endringen ser vi at optimizeren bruker Nested Loop i stedet for Hash Join.
+
+migrations/007_add_sellers_location_index.up.sql (oppdatert)
+```sql
+CREATE INDEX sellers_location_id_idx ON sellers (location, id);
+
+ALTER DATABASE postgres SET random_page_cost = 1.1;
+```
+
+migrations/007_add_sellers_location_index.down.sql (oppdatert)
+```sql
+ALTER DATABASE postgres SET random_page_cost = 4;
+
+DROP INDEX IF EXISTS sellers_location_id_idx;
+```
+
+### Execution plan
+
+```
+Limit  (cost=17274.97..17274.99 rows=8 width=48)
+  Output: s.id, s.location, (avg(sr.rating)), (count(sr.id))
+  ->  Sort  (cost=17274.97..17275.16 rows=78 width=48)
+        Output: s.id, s.location, (avg(sr.rating)), (count(sr.id))
+        Sort Key: (avg(sr.rating)) DESC
+        ->  GroupAggregate  (cost=0.72..17272.52 rows=78 width=48)
+              Output: s.id, s.location, avg(sr.rating), count(sr.id)
+              Group Key: s.id
+              Filter: (count(sr.id) >= $2)
+              ->  Nested Loop  (cost=0.72..16832.15 rows=58250 width=16)
+                    Output: s.id, s.location, sr.rating, sr.id
+                    ->  Index Only Scan using sellers_location_id_idx on public.sellers s  (cost=0.29..5.46 rows=233 width=8)
+                          Output: s.location, s.id
+                          Index Cond: (s.location = $1)
+                    ->  Index Scan using seller_reviews_seller_id_idx on public.seller_reviews sr  (cost=0.43..69.71 rows=251 width=12)
+                          Output: sr.id, sr.seller_id, sr.rating, sr.review_date
+                          Index Cond: (sr.seller_id = s.id)
+Planning:
+  Buffers: shared hit=183
+```
+
+### Test results (med random_page_cost = 1.1)
+
+- Rounds: 1000
+- Time: 8.59s
+- Mean query time: 8.53 ms
+
+**Ytelsesforbedring:** ~67x raskere (569.64 ms → 8.53 ms)
+
+Nå brukes begge index-ene effektivt:
+1. `sellers_location_id_idx` finner raskt de 233 selgerne i Trondheim
+2. For hver selger brukes `seller_reviews_seller_id_idx` til å finne deres reviews
+3. Ingen scanning av alle 2.5M reviews lenger!
