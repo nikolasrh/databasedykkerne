@@ -47,3 +47,9 @@ Run the migrate.sh script with the arguments "up" or "down", and the number of m
 ```
 ./performance-app/migrate.sh up 1
 ```
+
+Don't use Python when asked to connect to the postgres database.
+Connect with `docker exec` and run queries with psql:
+```
+docker exec -i databasedykkerne-postgres-1 psql -U postgres -d postgres -c "SELECT COUNT(*) FROM sellers;"
+```

@@ -4,9 +4,8 @@ Task 6: Finn topp 100 selgere
 Legg til den indexen som du tror gir best ytelse.
 Se på planen. Hva ser du?
 
-Hva annet enn en index kan forbedre ytelsen?
-
-Gjør spørringen så rask som mulig 🏎️
+Denne spørringen blir kjørt mye, og tar tross alt litt tid.
+Hvilke andre løsninger finnes for å begrense last på databasen og gi raskere responstid?
 """
 from psycopg_pool import ConnectionPool
 from pytest_benchmark.fixture import BenchmarkFixture

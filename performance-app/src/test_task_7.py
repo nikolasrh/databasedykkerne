@@ -1,11 +1,10 @@
 """
-Task 7: Finn topp 100 selgere i Trondheim
+Task 7: Finn topp 10 selgere i Trondheim
 
 Sjekk den planen, da!
 
-Diskusjon:
-Denne spørringen blir kjørt mye, og tar tross alt litt tid.
-Hvilke andre løsninger finnes for å begrense last på databasen og gi raskere responstid?
+Sammenlignet med forrige oppgave sjekker vi nå også `location` og at selgeren har minst 10 reviews.
+Hvorfor fungerer index(er) bedre nå?
 """
 from psycopg_pool import ConnectionPool
 from pytest_benchmark.fixture import BenchmarkFixture
@@ -35,7 +34,7 @@ def test_task_7(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_pl
     explain_plan(QUERY)
 
     def run_query() -> list:
-        return find_top_sellers_by_location(db_pool, location="trondheim", min_reviews=5, limit=10)
+        return find_top_sellers_by_location(db_pool, location="trondheim", min_reviews=10, limit=10)
 
     result = benchmark.pedantic(
         run_query, rounds=10, warmup_rounds=1, iterations=1)
