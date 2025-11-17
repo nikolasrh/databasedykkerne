@@ -8,6 +8,7 @@ dependencies = [
     "pytest==8.4.2",
     "pytest-benchmark==5.1.0",
     "pytest-timeout==2.4.0",
+    "matplotlib==3.10.7",
 ]
 
 [tool.pytest.ini_options]
