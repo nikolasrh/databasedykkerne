@@ -4,6 +4,8 @@ Python-applikasjon for å optimalisere database-spørringer.
 
 ## Kom i gang
 
+### Lag miljø med Dev Containers
+
 Åpne mappen `performance-app` i eget VS Code-vindu:
 ```
 code performance-app
@@ -11,6 +13,26 @@ code performance-app
 
 Installer Dev Containers extensionen, og trykk dialogen for å åpne med Dev Containers.
 Alternativt Cmd+Shift+P og søk etter "Reopen in Container".
+
+### Lag miljø uten Dev Containers
+
+Opprett et virtuelt miljø:
+```bash
+python3 -m venv .venv
+```
+
+Aktiver det virtuelle miljøet:
+```bash
+source .venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate     # Windows
+```
+
+Installer avhengigheter:
+```bash
+pip install -e .
+```
+
+### Kjør setup og første oppgave
 
 Kjør setup script:
 ```bash
@@ -22,7 +44,7 @@ Ta en titt i [001_create_product_scehma.up.sql](migrations/001_create_product_sc
 
 Åpne `test_task_1.py` og les oppgaven i toppen av filen.
 
-Kjør første test:
+Kjør første test (oppgave):
 ```bash
 pytest src/test_task_1.py
 ```
