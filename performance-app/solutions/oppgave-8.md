@@ -1,4 +1,4 @@
-# Task A: Paginer gjennom seller reviews sortert på review_date
+# Oppgave 8: Paginer gjennom seller reviews sortert på review_date
 
 Uten indeks må PostgreSQL skanne hele `seller_reviews`-tabellen og sortere den hver gang.
 

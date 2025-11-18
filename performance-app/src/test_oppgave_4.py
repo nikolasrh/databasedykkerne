@@ -1,5 +1,5 @@
 """
-Task 4: Søk på dato
+Oppgave 4: Søk på dato
 
 Her skal vi finne hvilke produkter som ble lansert innenfor en ukes tidsperiode. Og det skal gå raskt!
 """
@@ -20,7 +20,7 @@ def find_products_by_released_date(db_pool: ConnectionPool, start_date: datetime
             return results
 
 
-def test_task_4(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_4(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
 
     rng = random.Random(42)

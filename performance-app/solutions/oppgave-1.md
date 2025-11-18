@@ -1,4 +1,4 @@
-# Task 1: Bli kjent med oppsettet
+# Oppgave 1: Bli kjent med oppsettet
 
 Oppslag på `product_id` er raskt fordi det er primærnøkkelen.
 PostgreSQL lager automatisk en b-tree index for å sikre unike verdier og ytelse.

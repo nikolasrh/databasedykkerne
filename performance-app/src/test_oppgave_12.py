@@ -1,5 +1,5 @@
 """
-Task 9: Sortert etter lanseringsdato
+Oppgave 12: Sortert etter lanseringsdato
 
 Hent ut 1000 produkter sortert etter lanseringsdato.
 Nyeste først. Sorteringen må være deterministisk.
@@ -29,7 +29,7 @@ def find_products_with_avg_reviews_by_date(db_pool: ConnectionPool, offset: int 
             return results
 
 
-def test_task_9(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_12(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     results = []
     # TODO: Fix

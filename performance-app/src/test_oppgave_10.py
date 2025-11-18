@@ -1,5 +1,5 @@
 """
-Task C: Keyset pagination for seller reviews med minimum rating
+Oppgave 10: Keyset pagination for seller reviews med minimum rating
 
 I stedet for OFFSET, bruk keyset pagination.
 Send med siste review_date og id fra forrige page som "keys" for å fortelle hvor langt man har kommet.
@@ -46,7 +46,7 @@ def find_seller_reviews_keyset(
             return results
 
 
-def test_task_c(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_10(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     min_rating = 5
     last_review_date = [date(1900, 1, 1)]  # Vilkårlig lav startverdi. Alternativt ikke ha med filteret i SQL-en for første kall.

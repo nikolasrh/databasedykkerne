@@ -1,10 +1,10 @@
-# Task C: Keyset pagination for seller reviews med minimum rating
+# Oppgave 10: Keyset pagination for seller reviews med minimum rating
 
 ## Hvordan fungerer det?
 
 I stedet for å si "hopp over de første N radene", sender vi med verdiene fra siste rad på forrige page:
 
-**Offset pagination (Task B):**
+**Offset pagination (Oppgave 9):**
 ```sql
 WHERE rating >= 5
 ORDER BY review_date, id
@@ -12,7 +12,7 @@ LIMIT 1000
 OFFSET 10000
 ```
 
-**Keyset pagination (Task C):**
+**Keyset pagination (Oppgave 10):**
 ```sql
 WHERE rating >= 5
   AND (review_date, id) > (last_review_date, last_id)
@@ -22,21 +22,21 @@ LIMIT 1000
 
 ## Hvorfor er dette raskere?
 
-### Med offset (Task B):
+### Med offset (Oppgave 9):
 - Page 1: Scann ~5000 rader
 - Page 10: Scann ~50000 rader
 - Page 100: Scann ~500000 rader
 
 PostgreSQL må telle gjennom alle matchende rader fra starten hver gang.
 
-### Med keyset (Task C):
+### Med keyset (Oppgave 10):
 - Page 1: Scann ~5000 rader
 - Page 10: Scann ~5000 rader
 - Page 100: Scann ~5000 rader
 
 PostgreSQL starter der forrige page sluttet, og kan hoppe dit direkte ved å bruke indeksen.
 
-Derfor fungerer samme indeks som fra Task A og B:
+Derfor fungerer samme indeks som fra Oppgave 8 og 9:
 ```sql
 CREATE INDEX seller_reviews_review_date_id_idx ON seller_reviews (review_date, id);
 ```

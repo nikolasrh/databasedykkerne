@@ -1,5 +1,5 @@
 """
-Task 6: Finn topp 100 selgere
+Oppgave 6: Finn topp 100 selgere
 
 Legg til den indexen som du tror gir best ytelse.
 Se på planen. Hva ser du?
@@ -22,7 +22,7 @@ def find_top_sellers(db_pool: ConnectionPool, limit: int) -> list:
             return results
 
 
-def test_task_6(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_6(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
 
     def run_query() -> list:

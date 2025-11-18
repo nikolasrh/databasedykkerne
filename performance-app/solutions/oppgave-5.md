@@ -1,4 +1,4 @@
-# Task 5: Søk på kategori og dato
+# Oppgave 5: Søk på kategori og dato
 
 Med bare en indeks på `released_date` må databasen først finne alle produkter i datoområdet, og deretter filtrere på kategori.
 

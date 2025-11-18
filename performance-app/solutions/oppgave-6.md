@@ -1,4 +1,4 @@
-# Task 6: Finn topp 100 selgere
+# Oppgave 6: Finn topp 100 selgere
 
 Spørringen må gruppere alle rader per `seller_id`, beregne gjennomsnitt, sortere alle grupper, og hente topp 100.
 

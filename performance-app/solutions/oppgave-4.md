@@ -1,4 +1,4 @@
-# Task 4: Søk på dato
+# Oppgave 4: Søk på dato
 
 Uten indeks må PostgreSQL skanne hele `products`-tabellen for å finne radene som matcher datoområdet.
 

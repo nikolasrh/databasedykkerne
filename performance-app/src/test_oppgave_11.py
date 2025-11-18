@@ -1,5 +1,5 @@
 """
-Task 8: Finn produkter med vurdering
+Oppgave 11: Finn produkter med vurdering
 
 Her henter vi ut 1000 produkter om gangen med gjennomsnittlig vurdering.
 Etter å ha hentet ut de 1000 første, hentes 1001-2000, og så videre.
@@ -35,7 +35,7 @@ def find_products_with_avg_reviews_by_id(db_pool: ConnectionPool, offset: int = 
             return results
 
 
-def test_task_8(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_11(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     results = []
     offset = [0]

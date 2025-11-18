@@ -1,5 +1,5 @@
 """
-Task 1: Bli kjent med oppsettet
+Oppgave 1: Bli kjent med oppsettet
 
 Før testen printes planen for den uparametriserte spørringen med EXPLAIN.
 Det kan man også gjøre i sitt foretrukne databaseverktøy, typisk ved å trykke F10.
@@ -36,7 +36,7 @@ def find_product_by_id(db_pool: ConnectionPool, product_id: int) -> tuple[str, f
             return result if result else None
 
 
-def test_task_1(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_product_id: int, explain_plan) -> None:
+def test_oppgave_1(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_product_id: int, explain_plan) -> None:
     explain_plan(QUERY)
 
     rng = random.Random(42)

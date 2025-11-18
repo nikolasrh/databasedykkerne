@@ -1,10 +1,10 @@
 """
-Task B: Paginer gjennom seller reviews med minimum rating
+Oppgave 9: Paginer gjennom seller reviews med minimum rating
 
-Nå er vi kun interessert i seller reviews med 4 stjerner eller bedre.
+Nå er vi kun interessert i seller reviews med 5 stjerner.
 
 I denne oppgaven holder det å svare på spørsmålet:
-Hvorfor yter denne spørringen dårligere enn forrige oppgave?
+Hvorfor er denne spørringen tregere enn den i forrige oppgave?
 
 Bonusoppgave:
 Få spørringen til å yte like godt som forrige oppgave med offset pagination.
@@ -33,10 +33,10 @@ def find_seller_reviews_by_rating(db_pool: ConnectionPool, min_rating: int, offs
             return results
 
 
-def test_task_b(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_9(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     offset = [0]
-    min_rating = 4
+    min_rating = 5
 
     def run_query() -> list:
         result = find_seller_reviews_by_rating(db_pool, min_rating, offset[0])

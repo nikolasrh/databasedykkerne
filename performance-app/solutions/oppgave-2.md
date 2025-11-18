@@ -1,4 +1,4 @@
-# Task 2: Bli kjent med oppsettet del 2
+# Oppgave 2: Bli kjent med oppsettet del 2
 
 Denne spørringen er rask fordi `seller_inventory`-tabellen har en `UNIQUE (product_id, seller_id)` constraint, og PostgreSQL lager automatisk en b-tree index.
 

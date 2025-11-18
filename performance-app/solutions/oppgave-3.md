@@ -1,4 +1,4 @@
-# Task 3: Finn samlet inventory for en selger
+# Oppgave 3: Finn samlet inventory for en selger
 
 Uten en indeks på `seller_id` må PostgreSQL skanne hele tabellen for å finne alle relevante rader.
 

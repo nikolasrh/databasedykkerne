@@ -1,5 +1,5 @@
 """
-Task 10: Finn laveste pris per produkt i en kategori og by
+Oppgave 13: Finn laveste pris per produkt i en kategori og by
 
 Omsider må du begynne å skrive SQL-en selv!
 
@@ -29,7 +29,7 @@ def find_lowest_price_sellers_by_category_and_city(
             return results
 
 
-def test_task_10(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_13(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     offset = [0]
 

@@ -1,5 +1,5 @@
 """
-Task 3: Finn samlet inventory for en selger
+Oppgave 3: Finn samlet inventory for en selger
 
 Denne spørringen er treig.
 
@@ -35,7 +35,7 @@ def find_total_inventory_for_seller(db_pool: ConnectionPool, seller_id: int) -> 
             return result[0] if result and result[0] else 0
 
 
-def test_task_3(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_seller_id: int, explain_plan) -> None:
+def test_oppgave_3(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_seller_id: int, explain_plan) -> None:
     explain_plan(QUERY)
 
     rng = random.Random(42)

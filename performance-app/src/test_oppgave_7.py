@@ -1,5 +1,5 @@
 """
-Task 7: Finn topp 10 selgere i Trondheim
+Oppgave 7: Finn topp 10 selgere i Trondheim
 
 Sjekk den planen, da!
 
@@ -30,7 +30,7 @@ def find_top_sellers_by_location(db_pool: ConnectionPool, location: str, min_rev
             return results
 
 
-def test_task_7(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_7(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
 
     def run_query() -> list:

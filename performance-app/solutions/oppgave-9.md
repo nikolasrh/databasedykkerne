@@ -1,4 +1,4 @@
-# Task B: Paginer gjennom seller reviews med minimum rating
+# Oppgave 9: Paginer gjennom seller reviews med minimum rating
 
 Når vi filtrerer på rating minsker sjansen for at raden vi sjekker blir med i resultatet.
 Det vil si at PostgreSQL scanner indeksen mye lenger før den finner 1000 matchende rader.

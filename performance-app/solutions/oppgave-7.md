@@ -1,4 +1,4 @@
-# Task 7: Finn topp 10 selgere i Trondheim
+# Oppgave 7: Finn topp 10 selgere i Trondheim
 
 Sammenlignet med forrige oppgave filtrerer vi nå på `location` og `HAVING COUNT(sr.id) >= 5`. Da vil en index betydelig redusere antall rader vi trenger å aggregere.
 
@@ -117,4 +117,4 @@ Nå brukes begge index-ene effektivt:
 
 ### Bonus
 
-Kjør Task 5 på nytt og sammenlign execution plan etter at `random_page_cost` ble endret.
+Kjør Oppgave 5 på nytt og sammenlign execution plan etter at `random_page_cost` ble endret.

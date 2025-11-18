@@ -1,5 +1,5 @@
 """
-Task 5: Søk på kategori og dato
+Oppgave 5: Søk på kategori og dato
 
 Nå skal vi finne produkter i en bestemt kategori som ble lansert innenfor en periode.
 Denne spørringen er ganske lik den i forrige oppgave, og fungerer bra med indexen som ble lagt til da.
@@ -28,7 +28,7 @@ def find_products_by_category_and_released_date(db_pool: ConnectionPool, categor
             return results
 
 
-def test_task_5(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_5(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
 
     rng = random.Random(42)

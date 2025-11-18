@@ -1,5 +1,5 @@
 """
-Task 2: Bli kjent med oppsettet del 2
+Oppgave 2: Bli kjent med oppsettet del 2
 
 Denne spørringen kjører også raskt!
 Se på planen, og forklarer hvorfor til sidemannen.
@@ -20,7 +20,7 @@ def find_inventory_of_product_for_seller(db_pool: ConnectionPool, product_id: in
             return result[0] if result else None
 
 
-def test_task_2(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_product_id: int, max_seller_id: int, explain_plan) -> None:
+def test_oppgave_2(benchmark: BenchmarkFixture, db_pool: ConnectionPool, max_product_id: int, max_seller_id: int, explain_plan) -> None:
     explain_plan(QUERY)
 
     rng = random.Random(42)

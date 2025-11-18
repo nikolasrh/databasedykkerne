@@ -34,4 +34,4 @@ echo "============================================="
 echo "Setup complete!"
 echo "============================================="
 echo
-echo "Run first performance test: pytest src/test_task_1.py"
+echo "Run first performance test: pytest src/test_oppgave_1.py"

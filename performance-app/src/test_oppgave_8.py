@@ -1,5 +1,5 @@
 """
-Task A: Paginer gjennom seller reviews sortert på review_date
+Oppgave 8: Paginer gjennom seller reviews sortert på review_date
 
 Hent ut 1000 seller reviews om gangen, sortert etter review_date.
 Lag en index som gjør spørringen rask!
@@ -31,7 +31,7 @@ def find_seller_reviews(db_pool: ConnectionPool, offset: int = 0) -> list:
             return results
 
 
-def test_task_a(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
+def test_oppgave_8(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_plan) -> None:
     explain_plan(QUERY)
     offset = [0]
     timing_data = []
@@ -59,8 +59,8 @@ def test_task_a(benchmark: BenchmarkFixture, db_pool: ConnectionPool, explain_pl
     plt.scatter(offsets, times_ms, alpha=0.6, s=20)
     plt.xlabel('Offset')
     plt.ylabel('Query Time (ms)')
-    plt.title('Task A: Pagination Performance - Query Time vs Offset')
+    plt.title('Oppgave 8: Pagination Performance - Query Time vs Offset')
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('task_a_results.png', dpi=150)
-    print(f"\nPlot saved to task_a_results.png")
+    plt.savefig('oppgave_8_results.png', dpi=150)
+    print(f"\nPlot saved to oppgave_8_results.png")

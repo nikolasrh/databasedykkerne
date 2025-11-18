@@ -42,11 +42,11 @@ Kjør setup script:
 Scriptet starter PostgreSQL, kjører migreringer og seeder databasen.
 Ta en titt i [001_create_product_scehma.up.sql](migrations/001_create_product_schema.up.sql) for å se hvordan tabellene ser ut.
 
-Åpne `test_task_1.py` og les oppgaven i toppen av filen.
+Åpne `test_oppgave_1.py` og les oppgaven i toppen av filen.
 
 Kjør første test (oppgave):
 ```bash
-pytest src/test_task_1.py
+pytest src/test_oppgave_1.py
 ```
 
 ## Golang migrate
