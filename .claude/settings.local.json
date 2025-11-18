@@ -1,9 +1,13 @@
 {
   "permissions": {
     "allow": [
+      "Bash(PGPASSWORD=performance psql -h localhost -U performance -d performance -c \"SELECT COUNT(*) FROM products;\")",
       "Bash(docker exec:*)",
-      "Bash(docker-compose:*)",
-      "Bash(./migrate.sh up)"
+      "Bash(./migrate.sh:*)",
+      "WebSearch",
+      "WebFetch(domain:pytest-benchmark.readthedocs.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

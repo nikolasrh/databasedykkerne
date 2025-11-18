@@ -3,7 +3,7 @@ from psycopg_pool import ConnectionPool
 
 def create_db_pool():
     """Create a connection pool for PostgreSQL database"""
-    connstring = "postgresql://postgres:password@localhost:5432/postgres"
+    connstring = "postgresql://postgres:password@localhost:5433/postgres"
 
     return ConnectionPool(
         connstring,

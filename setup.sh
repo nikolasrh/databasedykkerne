@@ -2,7 +2,6 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$SCRIPT_DIR/.."
 
 echo "============================================="
 echo "Starting PostgreSQL..."
@@ -27,8 +26,8 @@ echo "============================================="
 echo "Restarting PostgreSQL with resource limits..."
 echo "============================================="
 
-docker compose -f "$REPO_DIR/docker-compose.yml" stop postgres
-docker compose -f "$REPO_DIR/docker-compose.yml" -f "$REPO_DIR/docker-compose.resources.yml" up postgres -d --wait
+docker compose -f "$SCRIPT_DIR/docker-compose.yml" stop postgres
+docker compose -f "$SCRIPT_DIR/docker-compose.yml" -f "$SCRIPT_DIR/docker-compose.resources.yml" up postgres -d --wait
 
 echo "============================================="
 echo "Setup complete!"

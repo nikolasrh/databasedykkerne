@@ -1,66 +1,79 @@
-# Databasedykkerne
+# Ytelsesoptimaliserings-workshop
 
-Dette trenger du:
-- VS Code
-- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- Colima eller Docker Desktop
+Python-applikasjon for å optimalisere database-spørringer.
 
-Dette repoet inneholder eksempel-applikasjoner med lokalt databaseoppsett for populære teknologier som brukes på Trondheimskontoret. Det er lagt opp til at man enkelt skal kunne komme i gang med lokal utvikling for hver applikasjon ved å bruke [Dev Containers](https://github.com/devcontainers). Databaser settes opp på utsiden med [Docker Compose](https://docs.docker.com/compose/). Man står fritt til å bruke den databasen man ønsker for hver applikasjon.
+## Kom i gang
 
-## Oppsett av Docker
+### Lag miljø med Dev Containers
 
-MSSQL server har ingen container images for arm64 (x86_64).
-For å kjøre dette trenger man å emulere amd64 (aarch64).
-To vanlige løsninger for dette er Docker Desktop og Colima.
-
-### Docker Desktop
-
-Installer Docker Desktop:
-[https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
-
-Skru så på Rosetta i innstillingene i Docker Desktop. Det er nødvendig for emulering av AMD64-arkitektur:
-
-<img width="1727" height="993" alt="Pasted Graphic 1" src="https://github.com/user-attachments/assets/07db2446-5035-43f9-a282-a07301e84e58" />
-
-
-### Colima
-
-Installer Colima:
-
-```sh
-brew install colima
+Åpne mappen `performance-app` i eget VS Code-vindu:
+```
+code performance-app
 ```
 
-Man har to valg for å kjøre amd64-prosesser:
-- Lage en aarch64 (arm64) virtuell maskin som er emulert av Apple Virtualization Framework (vz) med Rosetta skrudd på, slik at den kan kjøre amd64-prosesser ved at Rosetta oversetter prosessor-instruksjoner.
-- Lage en x86_64 (amd64) virtuell maskin som er emulert av QEMU som kun kan kjøre amd64-prosesser.
+Installer Dev Containers extensionen, og trykk dialogen for å åpne med Dev Containers.
+Alternativt Cmd+Shift+P og søk etter "Reopen in Container".
 
-Vi fokuserer på den første fordi det er raskere, og man trenger kun én VM hvis man også vil kjøre arm64-prosesser.
+### Lag miljø uten Dev Containers
 
-For å lage en Colima-instans:
-
-```sh
-colima start --vm-type=vz --vz-rosetta --cpu 4 --memory 8
+Opprett et virtuelt miljø:
+```bash
+python3 -m venv .venv
 ```
 
-## Starte databaser og appikasjoner
-
-Starte ønsket database:
-
-```sh
-docker compose up postgres
-docker compose up mssql
-docker compose up oracle
+Aktiver det virtuelle miljøet:
+```bash
+source .venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate     # Windows
 ```
 
-Legg på `-mcp` for å også starte MCP-server.
-
-
-For å utvikle mot en applikasjon med Dev Containers må root av applikasjonen åpnes i et nytt VS Code-vindu.
-
-```sh
-code example-apps/python-django
+Installer avhengigheter:
+```bash
+pip install -e .
 ```
 
-Hvis man har Dev Containers extensionen blir man spurt om å åpne mappen på nytt med Dev Containers. Alternativt kan man kjøre kommandoen manuelt. Trykk `Cmd + Shift + P` og søk etter `Dev Containers: Reopen in Container`.
+### Kjør setup og første oppgave
 
+Kjør setup script:
+```bash
+./setup.sh
+```
+
+Scriptet starter PostgreSQL, kjører migreringer og seeder databasen.
+Ta en titt i [001_create_product_scehma.up.sql](migrations/001_create_product_schema.up.sql) for å se hvordan tabellene ser ut.
+
+Åpne `test_oppgave_1.py` og les oppgaven i toppen av filen.
+
+Kjør første test (oppgave):
+```bash
+pytest src/test_oppgave_1.py
+```
+
+## Golang migrate
+
+Scriptet `./migrate.sh` er en wrapper rundt [golang-migrate](https://github.com/golang-migrate/migrate) som kjøres via Docker.
+
+Når man legger til nye migreringer må de slutte på `.up.sql`.
+Det er valgfritt å lage en "down" migrering som slutter på `.down.sql`.
+Tallet først i filnavnet bestemmer rekkefølgen.
+
+Legg til nye SQL-filer med index-er i `./performance-app/migrations`.
+
+### Nyttige kommandoer
+
+Kjør alle databasemigreringer:
+```bash
+./migrate.sh up
+```
+
+Gå til en spesifikk versjon:
+```bash
+./migrate.sh goto 2
+```
+
+Hvis man endrer på migreringer som allerede er kjørt, kan database-versjonen bli "dirty".
+Da kan man tvinge den til den versjonen man mener er riktig med `force`:
+
+```bash
+./migrate.sh force 1
+```

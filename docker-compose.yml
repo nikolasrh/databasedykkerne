@@ -1,121 +1,17 @@
-x-healthcheck: &healthcheck
-  interval: 10s
-  timeout: 5s
-  retries: 10
-  start_period: 5s
-  start_interval: 5s
-
-x-toolbox: &toolbox
-  image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:0.13.0
-
 services:
   postgres:
     image: postgres:17.6-trixie
     ports:
-      - 5432:5432
+      # Run on 5433 to avoid conflicts
+      - 5433:5432
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-    volumes:
-      - ${POSTGRES_INIT_SQL_FILE:-./docker/postgres/init.sql}:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      <<: *healthcheck
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+      start_interval: 5s
       test: [ "CMD", "pg_isready", "-U", "postgres" ]
-    networks:
-      - postgres
-
-  postgres-toolbox:
-    <<: *toolbox
-    ports:
-      - 5001:5000
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DATABASE: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-    command: [ "toolbox", "--address", "0.0.0.0", "--ui", "--prebuilt", "postgres" ]
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - postgres
-
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2025-latest
-    platform: linux/amd64
-    ports:
-      - 1433:1433
-    environment:
-      MSSQL_SA_PASSWORD: Password123!
-      ACCEPT_EULA: Y
-    volumes:
-      - ./docker/mssql/init.sql:/init.sql:ro
-      - ./docker/mssql/healthcheck-init.sh:/healthcheck-init.sh:ro
-    healthcheck:
-      <<: *healthcheck
-      test: [ "CMD", "/healthcheck-init.sh" ]
-    networks:
-      - mssql
-
-  mssql-toolbox:
-    <<: *toolbox
-    ports:
-      - 5002:5000
-    environment:
-      MSSQL_HOST: mssql
-      MSSQL_PORT: 1433
-      MSSQL_DATABASE: msdb
-      MSSQL_USER: sa
-      MSSQL_PASSWORD: Password123!
-    command: [ "toolbox", "--address", "0.0.0.0", "--ui", "--prebuilt", "mssql" ]
-    depends_on:
-      mssql:
-        condition: service_healthy
-    networks:
-      - mssql
-
-  oracle:
-    image: gvenzl/oracle-free:23.9-slim-faststart
-    ports:
-      - 1521:1521
-    environment:
-      ORACLE_PASSWORD: password
-    volumes:
-      - ./docker/oracle/init.sql:/container-entrypoint-initdb.d/init.sql:ro
-    healthcheck:
-      <<: *healthcheck
-      test: [ "CMD", "healthcheck.sh" ]
-    networks:
-      - oracle
-
-  oracle-sqlcl:
-    image: container-registry.oracle.com/database/sqlcl:25.2.2
-    volumes:
-      - ./docker/oracle-sqlcl/connect.sql:/opt/oracle/sql_scripts/connect.sql:ro
-    depends_on:
-      oracle:
-        condition: service_healthy
-    networks:
-      - oracle
-    # Save connection for MCP server, then keep container running
-    entrypoint: >
-      sh -c "cd /opt/oracle/sql_scripts && sql /nolog @connect.sql && tail -f /dev/null"
-
-  clickhouse:
-    image: clickhouse/clickhouse-server:23.10
-    ports:
-      - 8123:8123
-      - 9000:9000
-    healthcheck:
-      <<: *healthcheck
-      test: [ "CMD", "curl", "-f", "http://localhost:8123/ping" ]
-    networks:
-      - clickhouse
-
-networks:
-  postgres:
-  mssql:
-  oracle:
-  clickhouse:

@@ -1,3 +1,0 @@
-Django==5.2.5
-psycopg2-binary==2.9.10
-oracledb==3.3.0
