@@ -45,7 +45,7 @@ def explain_plan(db_pool):
     """General fixture for displaying EXPLAIN plans"""
     def _explain(sql_query):
         converted_query = convert_psycopg_to_postgres_params(sql_query)
-        explain_query = f"EXPLAIN (GENERIC_PLAN, BUFFERS, VERBOSE) {converted_query}"
+        explain_query = f"EXPLAIN (GENERIC_PLAN) {converted_query}"
 
         try:
             with db_pool.connection() as conn:
