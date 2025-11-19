@@ -6,31 +6,13 @@ Python-applikasjon for å optimalisere database-spørringer.
 
 ### Lag miljø med Dev Containers
 
-Åpne mappen `performance-app` i eget VS Code-vindu:
-```
-code performance-app
+Åpne repoet i eget VS Code-vindu:
+```bash
+code databasedykkerne
 ```
 
 Installer Dev Containers extensionen, og trykk dialogen for å åpne med Dev Containers.
 Alternativt Cmd+Shift+P og søk etter "Reopen in Container".
-
-### Lag miljø uten Dev Containers
-
-Opprett et virtuelt miljø:
-```bash
-python3 -m venv .venv
-```
-
-Aktiver det virtuelle miljøet:
-```bash
-source .venv/bin/activate  # macOS/Linux
-.venv\Scripts\activate     # Windows
-```
-
-Installer avhengigheter:
-```bash
-pip install -e .
-```
 
 ### Kjør setup og første oppgave
 
