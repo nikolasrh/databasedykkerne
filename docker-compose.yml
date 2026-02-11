@@ -114,8 +114,26 @@ services:
     networks:
       - clickhouse
 
+  postgres-pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: postgres-pgvector
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ${PGVECTOR_INIT_SQL_FILE:-./docker/postgres-pgvector/init.sql}:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      <<: *healthcheck
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+    networks:
+      - postgres-pgvector
+
 networks:
   postgres:
   mssql:
   oracle:
   clickhouse:
+  postgres-pgvector:
