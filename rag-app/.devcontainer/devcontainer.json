@@ -1,0 +1,36 @@
+{
+    "name": "rag-app",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+    "runArgs": [
+        "--name",
+        "rag-app",
+        "--network",
+        "host"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "moby": "false"
+        }
+    },
+    "containerEnv": {
+        "PGVECTOR_INIT_SQL_FILE": "${localWorkspaceFolder}/../docker/postgres-pgvector/init.sql",
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+        "TQDM_DISABLE": "1",
+        "TRANSFORMERS_VERBOSITY": "error"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "files.autoSave": "onFocusChange",
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.autopep8"
+                }
+            }
+        }
+    },
+    "postCreateCommand": "pip install ."
+}
