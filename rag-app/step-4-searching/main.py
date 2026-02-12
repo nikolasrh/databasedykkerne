@@ -19,10 +19,10 @@ _model = None
 
 
 def load_model():
-    """Last inn embedding-modell (cached, ingen nettverkskall)"""
+    """Last inn embedding-modell"""
     global _model
     if _model is None:
-        _model = SentenceTransformer(MODEL_NAME, local_files_only=True)
+        _model = SentenceTransformer(MODEL_NAME)
     return _model
 
 
