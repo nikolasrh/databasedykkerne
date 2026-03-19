@@ -381,3 +381,81 @@ Send meg en DM med noe du gjør for å dra ned risikoen.
 
 ---
 
+# Tips og triks Databasedykkerne edition
+
+---
+
+## Bruk transaksjoner!
+
+1. Lag transaction
+2. Gjør endring
+3. Les ut resultat
+4. Commit ✅
+
+Sjekk hvor mange rader som er påvirket:
+```
+SELECT @@ROWCOUNT;
+```
+
+---
+
+
+## Skriv WHERE clause først
+
+Test den med SELECT før DELETE.
+Se hvor mange rader som er påvirket.
+
+```
+SELECT * FROM Customers WHERE CustomerID = 1;
+```
+
+```
+DELETE FROM FROM Customers WHERE CustomerID = 1;
+```
+
+---
+
+## Ikke tilgang til å skrive i Prod
+
+Må utføres av andre (les plattform)
+
+---
+
+## Bruker med begrensa rettigheter
+
+Ikke DBO!
+Mindre å fucke opp
+
+---
+
+## Postgres dump-filer lokalt 🥟
+
+---
+
+## Kjør akkurat det samme i Test først 🧐
+
+---
+
+## Lag en backup-tabell
+
+CREATE TABLE MY_TABLE_BACKUP_2025-05-01
+
+SELECT *
+INTO #backup_users
+FROM Users
+WHERE LastLogin < '2023-01-01';
+
+SELECT *
+INTO Users_BACKUP_20260319
+FROM Users
+WHERE LastLogin < '2023-01-01';
+
+---
+
+## Konsultere våre venner 🤖
+
+Språkmodell eller menneske
+
+---
+
+## Ikke tukle med ting tidlig om morran eller etter to-knekken ☕️
