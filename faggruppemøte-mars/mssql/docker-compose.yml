@@ -1,0 +1,26 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    ports:
+      - 1433:1433
+    environment:
+      MSSQL_SA_PASSWORD: Password123!
+      ACCEPT_EULA: Y
+    volumes:
+      - ./init.sql:/init.sql:ro
+      - ./healthcheck-init.sh:/healthcheck-init.sh:ro
+      - ./backup:/var/opt/mssql/backup
+      - ./snapshot:/var/opt/mssql/snapshot
+      - ./data:/var/opt/mssql/data
+    healthcheck:
+      test: [ "CMD", "/healthcheck-init.sh" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+      start_interval: 5s
+
+networks:
+  default:
+    name: mssql-demo

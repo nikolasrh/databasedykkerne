@@ -1,0 +1,22 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-faststart
+    ports:
+      - 1521:1521
+    environment:
+      ORACLE_PASSWORD: password
+    volumes:
+      - ./init.sql:/container-entrypoint-initdb.d/init.sql:ro
+      - ./backup:/backup
+      - ./fast_recovery_area:/opt/oracle/fast_recovery_area
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh" ]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+      start_interval: 10s
+
+networks:
+  default:
+    name: oracle-demo
